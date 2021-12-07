@@ -1,0 +1,209 @@
+// Develop Settings
+$sizes: sm, md, lg, xl;
+$per_page: 12;
+
+$breakpoint: (
+	'sm': 'screen and (min-width: 640px)',// 	640px ~ 	width(iPhone)
+	'md': 'screen and (min-width: 768px)',//	768px ~  	width(iPad)
+	'lg': 'screen and (min-width: 1024px)',// 	1024px ~ 	width(iPad Pro) height(iPad)
+	'xl': 'screen and (min-width: 1280px)',//	1280px ~ 	width(HD)
+) !default;
+
+@mixin media-queries($size) {
+	@media #{map-get($breakpoint, $size)} {
+		@content;
+	}
+}
+
+@mixin responsive-width {// Screen Size Settings
+	@include media-queries('sm') { max-width: 640px; }
+	@include media-queries('md') { max-width: 768px; }
+	@include media-queries('lg') { max-width: 1024px; }
+	@include media-queries('xl') { max-width: 1280px; }
+}
+
+// Import files
+@import "modules/reset";
+
+// Container
+.container {
+	width: 100%;
+	margin: 0 auto;
+	padding: 0 7px;
+	box-sizing: border-box;
+	@include responsive-width;
+}
+
+button {
+	width: 100%;
+	height: 42px;
+	color: #fff;
+	background: linear-gradient(to right, rgb(201, 126, 14),rgb(221, 188, 0));
+	border-radius: 6px;
+	transition-duration: .3s;
+	&:hover {
+		background: linear-gradient(to right, rgb(133, 82, 6),rgb(148, 126, 5));
+		cursor: pointer;
+	}
+}
+
+#payment-form {
+	width: 100%;
+	height: 100%;
+	color: #fff;
+	background: #222;
+	margin: 0 auto;
+	padding: 8% 10%;
+	box-sizing: border-box;
+	box-shadow: 0 0 15px #000;
+	border-radius: 10px;
+	transition-duration: .3s;
+	.payment-form_inner {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		h2 {
+			font-size: 2rem;
+			color: #ddd;
+			margin-bottom: 30px;
+		}
+		p {
+			font-size: .94rem;
+			color: #bbb;
+			a {
+				font-size: .9rem;
+				color: rgb(36, 118, 241);
+				&:hover {
+					border-bottom: solid 1px rgb(36, 118, 241);
+				}
+			}
+		}
+		.StripeElement { margin-bottom: 30px; }
+		label {
+			color: #ccc;
+			margin-bottom: 10px;
+			display: block;
+		}
+		input[type="text"], input[type="email"] {
+			width: 100%;
+			color: #ddd;
+			margin-bottom: 30px;
+			border-bottom: solid 1px #ccc;
+		}
+		.links-area {
+			a {
+				font-size: .9rem;
+				color: #bbb;
+				transition-duration: .3s;
+				&:not(:last-child) { margin-right: 30px; }
+				&:hover {
+					color: #fff;
+				}
+			}
+		}
+	}
+}
+
+#checkout {
+	width: 100%;
+	height: 100vh;
+	position: relative;
+	.checkout_inner {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		flex-wrap: wrap;
+		flex-direction: column;
+		justify-content: center;
+		.card_wrapper {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-between;
+			&__left {
+				width: 100%;
+				height: 80vh;
+				max-width: 568px;
+				padding: 7% 5%;
+				box-shadow: 0 0 15px #000;
+				box-sizing: border-box;
+				z-index: 100;
+				position: relative;
+				&__inner {
+					width: 100%;
+					height: 100%;
+					display: flex;
+					flex-wrap: wrap;
+					flex-direction: column;
+					justify-content: space-between;
+					&__top {
+						z-index: 400;
+						h1.product {
+							font-size: 2.2rem;
+							font-family: 'Noto Sans JP', sans-serif;
+							font-weight: bold;
+							color: #fff;
+							margin-bottom: 30px;
+						}
+						p.description {
+							font-size: 1rem;
+							color: #ddd;
+						}
+					}
+					h2.price {
+						font-size: 3.6rem;
+						font-family: 'Josefin Sans', sans-serif;
+						letter-spacing: .24rem;
+						color: #fff;
+						z-index: 400;
+					}
+					ul.notice {
+						z-index: 400;
+						li {
+							font-size: 1rem;
+							color: #bbb;
+							list-style: disc;
+						}
+					}
+				}
+				.img {
+					top: 0;
+					left: 0;
+					width: 100%;
+					height: 100%;
+					position: absolute;
+				}
+			}
+			&__right {
+				width: 100%;
+				height: 70vh;
+				margin: auto 0;
+				z-index: 10;
+				@include media-queries("lg") {
+					width: calc(100% - 568px);
+				}
+			}
+		}
+		&:after {
+			content: "";
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: rgba(66, 66, 66, .1);
+			backdrop-filter: blur(6px) saturate(180%);
+			position: absolute;
+
+		}
+	}
+	.bg-img {
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		z-index: -1;
+	}
+}
