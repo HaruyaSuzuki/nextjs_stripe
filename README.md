@@ -4,6 +4,8 @@
 ![](https://img.shields.io/badge/npm-v8.1.0-CC3534.svg?style=for-the-badge)
 ![](https://img.shields.io/badge/stripe-v8.191.0-5433FF.svg?style=for-the-badge)
 
+Testing a payment form with Stripe and Next.js
+
 ## Payment Form
 ![スクリーンショット 2021-12-07 14 45 01](https://user-images.githubusercontent.com/62002891/144974900-762b945b-1ac0-4eaf-a6d9-7687b6261e20.png)
 
